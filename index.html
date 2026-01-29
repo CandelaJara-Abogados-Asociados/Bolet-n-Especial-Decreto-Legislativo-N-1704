@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boletín Especial - Decreto Legislativo Nº 1704</title>
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    html{ scroll-behavior: smooth; }
+
+    /* Fondo NO azul (gama gris/plomo) */
+    body{
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 60%, #d1d5db 100%);
+      padding: 18px;
+      color: #222;
+    }
+
+    /* ===== CARÁTULA ===== */
+    .cover{
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #111827 0%, #374151 65%, #111827 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+      margin-bottom: 18px;
+    }
+
+    .cover-inner{
+      position: relative;
+      height: 100vh;
+      max-height: 100vh;
+      aspect-ratio: 4 / 5;
+      width: min(100vw, calc(100vh * 0.8));
+      max-width: 100vw;
+    }
+
+    .cover-inner img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display:block;
+      filter: saturate(1.03) contrast(1.02);
+    }
+
+    /* ===== BOLETÍN ===== */
+    .container{
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+
+    .header{
+      background: linear-gradient(180deg, #111827 0%, #374151 100%);
+      color: #fff;
+      padding: 30px 26px;
+      text-align: center;
+    }
+
+    .brand-logo{
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .brand-logo img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display:block;
+    }
+
+    .header h1{
+      font-size: 24px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .header p{
+      font-size: 13px;
+      opacity: 0.95;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .subline{
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.22);
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0.98;
+    }
+
+    .info-bar{
+      background: #f3f4f6;
+      padding: 16px 26px;
+      border-bottom: 1px solid #e5e7eb;
+      display:flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .info-item{ flex: 1; min-width: 220px; }
+    .info-label{
+      font-size: 12px;
+      font-weight: 800;
+      color: #6b7280;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      letter-spacing: .3px;
+    }
+    .info-value{
+      font-size: 15px;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .controls{
+      padding: 16px 26px;
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-box{ flex: 1; min-width: 260px; }
+    .search-box input{
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+      background:#fff;
+    }
+    .search-box input:focus{
+      outline: none;
+      border-color: #111827;
+      box-shadow: 0 0 0 3px rgba(17,24,39,0.10);
+    }
+
+    .search-help{
+      font-size: 12px;
+      color:#6b7280;
+      margin-top: 6px;
+    }
+
+    .filter-buttons{ display:flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn{
+      padding: 10px 14px;
+      border: 1px solid #111827;
+      background: #fff;
+      color: #111827;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .btn:hover{ background:#111827; color:#fff; }
+
+    .content{ padding: 18px 26px 26px; }
+
+    details.section{
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 12px 0;
+      background: #fff;
+    }
+
+    details.section > summary{
+      list-style:none;
+      cursor:pointer;
+      padding: 12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #f3f4f6;
+      border-bottom: 1px solid #e5e7eb;
+      font-weight: 800;
+      color:#111827;
+    }
+    details.section > summary::-webkit-details-marker{ display:none; }
+
+    .sum-left{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      min-width: 220px;
+    }
+
+    .num{
+      width: 34px;
+      height: 26px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 20px;
+      border: 1px solid #111827;
+      color: #111827;
+      background:#fff;
+      font-size: 12px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .sec-body{
+      padding: 12px 14px 14px;
+      color:#111827;
+      line-height: 1.65;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .sec-body h3{
+      font-size: 13px;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+    .sec-body p{ margin: 8px 0; }
+    .sec-body ul, .sec-body ol{ margin: 8px 0 8px 20px; }
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 10px 0;
+    }
+    th{
+      background: #f3f4f6;
+      padding: 12px;
+      text-align:left;
+      font-weight: 800;
+      color:#111827;
+      border-bottom: 3px solid #111827;
+    }
+    td{
+      padding: 12px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+      text-align: justify;
+    }
+
+    .note{
+      background: #f3f4f6;
+      padding: 10px 12px;
+      border-left: 3px solid #111827;
+      border-radius: 8px;
+      color: #111827;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    mark{
+      background: #fde68a;
+      padding: 0 2px;
+      border-radius: 3px;
+    }
+
+    .footer{
+      padding: 16px 26px;
+      background: #111827;
+      color: #e5e7eb;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px){
+      body{ padding: 12px; }
+      .header{ padding: 22px 15px; }
+      .info-bar, .controls, .content, .footer{ padding-left: 15px; padding-right: 15px; }
+      .header h1{ font-size: 20px; }
+      .brand-logo{ width: 140px; height: 140px; }
+    }
+
+    @media print{
+      body{ background:#fff; padding:0; }
+      .controls{ display:none !important; }
+      details.section{ break-inside: avoid; }
+      .container{ box-shadow:none; }
+      .cover{ box-shadow:none; border-radius:0; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- CARÁTULA -->
+  <section class="cover">
+    <div class="cover-inner">
+      <img src="img/caratula.png" alt="Carátula del boletín" />
+    </div>
+  </section>
+
+  <!-- BOLETÍN -->
+  <div class="container" id="boletin">
+    <div class="header">
+      <div class="brand-logo">
+        <img src="img/candela.png" alt="Candela Jara" />
+      </div>
+      <h1>Boletín Especial – Decreto Legislativo Nº 1704</h1>
+      <p>Declaratoria de emergencia y medidas orientadas a restablecer el servicio público de transporte</p>
+      <div class="subline">Elaborado por Candela Jara &amp; Abogados Asociados</div>
+    </div>
+
+    <div class="info-bar">
+      <div class="info-item">
+        <div class="info-label">Norma</div>
+        <div class="info-value">Decreto Legislativo Nº 1704</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Publicación</div>
+        <div class="info-value">24 de enero de 2026</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Buscar (ej.: 180 días, permisos, ANP, ACR, Formato de Acción)..." />
+        <div class="search-help" id="searchStatus">Escribe para filtrar secciones y resaltar coincidencias.</div>
+      </div>
+
+      <div class="filter-buttons">
+        <button class="btn" id="btnClear" type="button">Limpiar</button>
+        <button class="btn" id="btnOpenAll" type="button">Expandir todo</button>
+        <button class="btn" id="btnCloseAll" type="button">Contraer todo</button>
+        <button class="btn" id="btnPrint" type="button">Imprimir / PDF</button>
+      </div>
+    </div>
+
+    <div class="content" id="content">
+
+      <details class="section" open>
+        <summary><span class="sum-left"><span class="num">I</span> Presentación</span><span>Ver</span></summary>
+        <div class="sec-body" data-search-body>
+          <p>El Decreto Legislativo N° 1704 establece un marco normativo para autorizar la declaratoria de emergencia del servicio público de transporte, destinado a garantizar la continuidad de la prestación cuando el servicio se vea severamente restringido o interrumpido, o cuando se afecte la seguridad o integridad de los usuarios.</p>
+          <p>La norma faculta al Ministerio de Transportes y Comunicaciones (MTC) a declarar en emergencia, mediante Resolución Ministerial, el servicio público de transporte afectado, habilitando la ejecución inmediata de acciones e intervenciones sobre infraestructura de transporte.</p>
+          <p>Asimismo, regula medidas complementarias vinculadas a contrataciones, gestión predial, coordinación con entidades competentes y condiciones excepcionales para ejecutar intervenciones durante la emergencia, con énfasis en recuperar la transitabilidad y la seguridad de los usuarios.</p>
+        </div>
+      </details>
+
+      <details class="section" open>
+        <summary><span class="sum-left"><span class="num">II</span> Base y justificación</span><span>Ver</span></summary>
+        <div class="sec-body" data-search-body>
+          <p>El Decreto Legislativo N° 1704 se dicta bajo una delegación de facultades legislativas, con el objetivo de contar con un régimen permanente para atender emergencias que comprometan la infraestructura de transporte y, en consecuencia, la continuidad del servicio público.</p>
+          <p>El contexto descrito en la norma reconoce la vulnerabilidad frente a eventos que pueden generar daños o peligro inminente en la infraestructura de transporte, afectando la continuidad de servicios públicos de transporte y produciendo impactos económicos y sociales.</p>
+          <p>Finalmente, se establece que su implementación no demanda recursos adicionales al Tesoro Público, al financiarse con el presupuesto institucional del MTC.</p>
+        </div>
+      </details>
+
+      <details class="section" open>
+        <summary><span class="sum-left"><span class="num">III</span> Objeto y finalidad</span><span>Ver</span></summary>
+        <div class="sec-body" data-search-body>
+          <h3>Objeto (artículo 1)</h3>
+          <p>Establecer un marco normativo para la declaratoria de emergencia del servicio público de transporte, para asegurar la continuidad de la prestación ante situaciones de emergencia, cuando el servicio se encuentre severamente restringido o interrumpido, o se afecte la seguridad o integridad de los usuarios.</p>
+
+          <h3>Finalidad (artículo 2)</h3>
+          <p>Adoptar acciones e intervenciones necesarias para preservar o restablecer de forma inmediata la prestación del servicio público de transporte.</p>
+        </div>
+      </details>
+
+      <details class="section" open>
+        <summary><span class="sum-left"><span class="num">IV</span> Declaratoria de emergencia</span><span>Ver</span></summary>
+        <div class="sec-body" data-search-body>
+          <h3>Autoridad (artículo 3)</h3>
+          <p>Se autoriza al Titular del MTC a declarar en emergencia, mediante Resolución Ministerial, el servicio público de transporte cuando se verifique una severa restricción o interrupción de la continuidad del servicio.</p>
+
+          <h3>Supuestos habilitantes (artículo 3.1)</h3>
+          <ul>
+            <li>Daños o peligro inminente en la infraestructura sobre la cual se presta el servicio público de transporte.</li>
+            <li>Otras situaciones de similar naturaleza, debidamente justificadas en un informe de la entidad competente de la gestión de la infraestructura de transporte.</li>
+          </ul>
+
+          <h3>Contrataciones (artículo 3.2)</h3>
+          <p>La Resolución Ministerial que declara en emergencia habilita la realización de las contrataciones necesarias para ejecutar las intervenciones previstas, en el marco de la Ley N° 32069, Ley General de Contrataciones Públicas, y su Reglamento.</p>
+
+          <h3>Identificación de infraestructura y vigencia (artículo 3.3)</h3>
+          <p>La Resolución Ministerial debe identificar la infraestructura de transporte objeto de intervención. El plazo de vigencia es de 180 días calendario, prorrogable.</p>
+        </div>
+      </details>
+
+      <!-- ===== V (MEJORADA E INCORPORADA) ===== -->
+      <details class="section" open>
+        <summary><span class="sum-left"><span class="num">V</span> Acciones e intervenciones</span><span>Ver</span></summary>
+        <div class="sec-body" data-search-body>
+
+          <p>
+            Declarada la emergencia mediante Resolución Ministerial (art. 3), el Ministerio de Transportes y Comunicaciones (MTC),
+            sus entidades, empresas adscritas y sus programas y proyectos especiales quedan autorizados a implementar en la
+            infraestructura de transporte las acciones e intervenciones necesarias para preservar o restablecer de forma
+            inmediata el servicio público de transporte afectado, ya sea de manera directa o a través de empresas contratistas.
+            (art. 4.1)
+          </p>
+
+          <h3>1) Ejecución inmediata de intervenciones (art. 4.1)</h3>
+          <ul>
+            <li>La habilitación comprende al MTC, sus entidades, empresas adscritas y programas/proyectos especiales.</li>
+            <li>La ejecución puede ser por administración directa o mediante contratistas, según la necesidad y la urgencia.</li>
+            <li>Si la infraestructura es concesionada, la intervención se realiza conforme al respectivo contrato de concesión.</li>
+          </ul>
+
+          <h3>2) Alcance territorial y coordinación intergubernamental (art. 4.2)</h3>
+          <p>
+            Las intervenciones pueden incluir infraestructura a cargo de gobiernos regionales y locales, conforme a los mecanismos
+            de intervención previstos en la normatividad aplicable. (art. 4.2)
+          </p>
+
+          <h3>3) Gestión predial para liberar predios e interferencias (art. 4.2)</h3>
+          <p>
+            Cuando la intervención lo requiera, se autoriza que la entidad competente realice acciones de gestión predial necesarias
+            para la liberación de predios e interferencias que permitan restablecer y preservar el servicio público de transporte.
+            Para ello, puede celebrar contratos, aprobar actos y realizar otros actos jurídicos orientados a obtener la posesión y
+            el uso temporal de inmuebles de propiedad privada o estatal durante la emergencia. (art. 4.2)
+          </p>
+          <ul>
+            <li>No aplica a inmuebles destinados a otro uso público o servicio público al momento de la emergencia. (art. 4.2)</li>
+            <li>La gestión predial puede encargarse a terceros, excepto respecto de inmuebles de titularidad del Estado o de Entidades Públicas. (art. 4.2)</li>
+            <li>La posesión y uso temporal se limita al plazo de la emergencia; si se requiere continuar usando un inmueble estatal luego, debe gestionarse conforme al Sistema Nacional de Abastecimiento. (art. 4.2)</li>
+            <li>No aplica a bienes en posesión o propiedad del Sector Defensa, salvo disposición legal expresa y específica. (art. 4.2)</li>
+          </ul>
+
+          <h3>4) Condiciones excepcionales (art. 4.3)</h3>
+          <p>
+            Se autoriza excepcionalmente ejecutar las intervenciones requeridas (directamente o mediante contratistas) bajo
+            condiciones que agilizan la atención, pero exigen comunicaciones posteriores y reglas especiales en materia ambiental y
+            de compatibilidad. (art. 4.3)
+          </p>
+          <ul>
+            <li>
+              Comunicación ambiental mediante Formato de Acción: se comunica a la Autoridad Ambiental Competente y a la entidad responsable
+              de supervisión y fiscalización ambiental las medidas de manejo implementadas, dentro de 30 días hábiles posteriores a la culminación;
+              el Formato de Acción es aprobado por resolución directoral de la Dirección General de Asuntos Ambientales del MTC. (art. 4.3.a)
+            </li>
+            <li>
+              Comunicación de lo ejecutado a entidades competentes: se informa sobre las intervenciones desarrolladas adjuntando la documentación
+              correspondiente dentro de 90 días hábiles posteriores a la culminación. (art. 4.3.b)
+            </li>
+            <li>
+              Permisos/títulos/autorizaciones: los permisos, títulos habilitantes y/o autorizaciones necesarios para ejecutar las intervenciones
+              se entienden aprobados automáticamente. (art. 4.3.c)
+            </li>
+            <li>
+              Intervenciones en ANP/ACR: si la intervención implica habilitar nuevos trazos o modificar el trazo vial existente únicamente en
+              Áreas Naturales Protegidas (ANP) de administración nacional (y sus zonas de amortiguamiento) o en Áreas de Conservación Regional (ACR),
+              debe solicitarse opinión técnica previa vinculante de compatibilidad, que se atiende en un plazo máximo de 15 días hábiles. (art. 4.3.d)
+            </li>
+          </ul>
+
+          <div class="note">
+            <p><strong>ANP:</strong> Áreas Naturales Protegidas de administración nacional (y sus zonas de amortiguamiento).</p>
+            <p><strong>ACR:</strong> Áreas de Conservación Regional.</p>
+          </div>
+
+          <h3>5) Estándar mínimo y resiliencia (art. 4.4)</h3>
+          <p>
+            La intervención por emergencia debe recuperar el nivel de servicio original de la infraestructura afectada y mejorar su resiliencia.
+            Como mínimo, debe incluir asfaltado de la vía, restablecimiento de la señalética y establecimiento de medidas de seguridad, entre otros,
+            que aseguren la transitabilidad y la seguridad de los usuarios. (art. 4.4)
+          </p>
+
+        </div>
+      </details>
+
+      <details class="section" open>
+        <summary><span class="sum-left"><span class="num">VI</span> Plazos clave</span><span>Ver</span></summary>
+        <div class="sec-body" data-search-body>
+          <table>
+            <thead><tr><th>Aspecto</th><th>Plazo</th></tr></thead>
+            <tbody>
+              <tr><td>Vigencia de la Resolución Ministerial de emergencia (art. 3.3)</td><td>180 días calendario (prorrogable).</td></tr>
+              <tr><td>Comunicación ambiental – Formato de Acción (art. 4.3.a)</td><td>30 días hábiles posteriores a la culminación.</td></tr>
+              <tr><td>Comunicación de intervenciones (art. 4.3.b)</td><td>90 días hábiles posteriores a la culminación.</td></tr>
+              <tr><td>Opinión técnica previa vinculante de compatibilidad en ANP/ACR (art. 4.3.d)</td><td>15 días hábiles máximo (ANP: Áreas Naturales Protegidas; ACR: Áreas de Conservación Regional).</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="footer">
+      <p><strong>Elaborado por</strong> Candela Jara &amp; Abogados Asociados</p>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const searchStatus = document.getElementById('searchStatus');
+    const sections = Array.from(document.querySelectorAll('details.section'));
+    const bodies = Array.from(document.querySelectorAll('[data-search-body]'));
+
+    bodies.forEach(b => { b.dataset.original = b.innerHTML; });
+    const restoreBodies = () => { bodies.forEach(b => b.innerHTML = b.dataset.original); };
+
+    const wrapAllMatches = (root, term) => {
+      if(!term) return;
+      const lower = term.toLowerCase();
+
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode(node){
+          if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          const p = node.parentElement;
+          if(!p) return NodeFilter.FILTER_REJECT;
+          if(p.closest('summary')) return NodeFilter.FILTER_REJECT;
+          if(p.closest('mark')) return NodeFilter.FILTER_REJECT;
+          if(p.tagName === 'SCRIPT' || p.tagName === 'STYLE') return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+
+      const textNodes = [];
+      while(walker.nextNode()) textNodes.push(walker.currentNode);
+
+      textNodes.forEach(node => {
+        let txt = node.nodeValue;
+        let idx = txt.toLowerCase().indexOf(lower);
+        if(idx === -1) return;
+
+        const frag = document.createDocumentFragment();
+        let last = 0;
+
+        while(idx !== -1){
+          const before = txt.slice(last, idx);
+          if(before) frag.appendChild(document.createTextNode(before));
+
+          const m = document.createElement('mark');
+          m.textContent = txt.slice(idx, idx + term.length);
+          frag.appendChild(m);
+
+          last = idx + term.length;
+          idx = txt.toLowerCase().indexOf(lower, last);
+        }
+
+        const after = txt.slice(last);
+        if(after) frag.appendChild(document.createTextNode(after));
+
+        node.parentNode.replaceChild(frag, node);
+      });
+    };
+
+    const doSearch = () => {
+      const term = (searchInput.value || '').trim().toLowerCase();
+      restoreBodies();
+
+      let visibleCount = 0;
+
+      sections.forEach(sec => {
+        const text = sec.textContent.toLowerCase();
+        const match = !term || text.includes(term);
+
+        sec.style.display = match ? '' : 'none';
+
+        if(match){
+          visibleCount++;
+          if(term){
+            sec.open = true;
+            const body = sec.querySelector('[data-search-body]');
+            if(body) wrapAllMatches(body, term);
+          }
+        }
+      });
+
+      if(!term){
+        searchStatus.textContent = 'Escribe para filtrar secciones y resaltar coincidencias.';
+      }else{
+        searchStatus.textContent = `Resultados: ${visibleCount} sección(es) con "${term}".`;
+      }
+    };
+
+    searchInput.addEventListener('input', doSearch);
+
+    document.getElementById('btnClear').addEventListener('click', () => {
+      searchInput.value = '';
+      doSearch();
+      searchInput.focus();
+    });
+
+    document.getElementById('btnOpenAll').addEventListener('click', () => {
+      sections.forEach(sec => { if(sec.style.display !== 'none') sec.open = true; });
+    });
+
+    document.getElementById('btnCloseAll').addEventListener('click', () => {
+      sections.forEach(sec => { if(sec.style.display !== 'none') sec.open = false; });
+    });
+
+    document.getElementById('btnPrint').addEventListener('click', () => window.print());
+
+    doSearch();
+  </script>
+</body>
+</html>
